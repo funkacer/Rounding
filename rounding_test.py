@@ -30,7 +30,7 @@ def rdv(x,y=0):
 
 class TestRounding(unittest.TestCase):
 
-    with open ('Known_result.tst', 'r') as f:
+    with open ('Known_results.tst', 'r') as f:
         dic = {}
         columns = f.readline().split()
         for col in columns:
