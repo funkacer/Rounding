@@ -162,6 +162,6 @@ print ("---- END OF TEST RESULTS")
 
 a = str(result)
 
-with open ('test_results.txt', 'w') as file:
+with open ('rounding_test_results.txt', 'w') as file:
     file.write(str(datetime.datetime.now())+'\n')
     file.write(a)
