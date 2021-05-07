@@ -78,14 +78,23 @@ def main(argv):
                 #precision = int(precision_str)
                 precision = precision_str
                 print('')
-                #print(number)
+                #print(precision)
             except Exception as e:
                 precision = 0
                 print('Precision not specified, using 0.\n')
                 #traceback.print_exc()
 
         if number is not None and precision is not None:
-            print(f'Rounding number {number} with precision {precision}: ' + rd(number, precision) + '\n')
+            if precision == '':
+                try:
+                    print(f'Rounding number {number} with no precision given: ' + rd(number) + '\n')
+                except Exception as e:
+                    traceback.print_exc()
+            else:
+                try:
+                    print(f'Rounding number {number} with precision {precision}: ' + rd(number, precision) + '\n')
+                except Exception as e:
+                    traceback.print_exc()
 
         answer = ''
         while answer not in ['yes','no']:

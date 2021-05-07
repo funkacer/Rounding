@@ -20,7 +20,8 @@ def rd(number: float, precision: int = 0) -> str:
         try:
             num = float(number)
         except Exception as e:
-            traceback.print_exc()
+            #traceback.print_exc()
+            pass
 
     if isinstance(precision, int):
         if precision >= 0:
@@ -31,7 +32,8 @@ def rd(number: float, precision: int = 0) -> str:
         try:
             prec = abs(int(precision))
         except Exception as e:
-            traceback.print_exc()
+            #traceback.print_exc()
+            pass
 
     assert num is not None, '\nPlease specify valid number\n'
     assert prec is not None, '\nPlease specify valid precision\n'
