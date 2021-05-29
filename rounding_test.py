@@ -51,7 +51,7 @@ class TestRounding(unittest.TestCase):
 
     def test_known_cases(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         for number, precision, result in self.test_cases:
             try:
@@ -67,7 +67,7 @@ class TestRounding(unittest.TestCase):
 
     def test_random_cases(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         result = 0
         while result == 0:
@@ -88,7 +88,7 @@ class TestRounding(unittest.TestCase):
 
     def test_str_number(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         number = 'a'
         precision = 0
@@ -98,7 +98,7 @@ class TestRounding(unittest.TestCase):
 
     def test_str_precision(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         number = 1.1
         precision = 'a'
@@ -107,7 +107,7 @@ class TestRounding(unittest.TestCase):
 
     def test_negative_precision(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         number = 1.1
         precision = -2
@@ -115,14 +115,14 @@ class TestRounding(unittest.TestCase):
 
     def test_none_number(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         number = None
         self.assertIsInstance(rd(number), str)
 
     def test_none_precision(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         number = 1.1
         precision = None
@@ -130,7 +130,7 @@ class TestRounding(unittest.TestCase):
 
     def test_no_precision(self):
 
-        from rounding import rd
+        from src.rounding import rd
 
         number = 1.1
         precision = None

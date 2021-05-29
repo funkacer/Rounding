@@ -1,7 +1,7 @@
 import sys
 import traceback
 
-from rounding import rd
+from src.rounding import rd
 from src.check_input import check_input
 
 def main(argv):
@@ -33,7 +33,7 @@ def main(argv):
         number = float(number_str)
         #print(number)
     except Exception as e:
-        print('Usage: python -m main number, precision\n')
+        print('Usage: python -m rounding_interactive number, precision\n')
         print("Entering interactive mode.\n")
         #traceback.print_exc()
 
