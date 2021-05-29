@@ -30,7 +30,7 @@ def rdv(x,y=0):
 
 class TestRounding(unittest.TestCase):
 
-    with open ('Known_results.tst', 'r') as f:
+    with open ('test_cases.tst', 'r') as f:
         dic = {}
         columns = f.readline().split()
         for col in columns:
@@ -162,6 +162,6 @@ print ("---- END OF TEST RESULTS")
 
 a = str(result)
 
-with open ('rounding_test_results.txt', 'w') as file:
+with open ('test_rounding_results.txt', 'w') as file:
     file.write(str(datetime.datetime.now())+'\n')
     file.write(a)
