@@ -29,11 +29,8 @@ def rdv(x,y=0):
 #print(rdv(12.5))
 
 class TestRounding(unittest.TestCase):
-
-    if (os.path.exists(os.path.join(os.curdir, "test"))):
-        os.chdir("test")
-
-    with open ('test_cases.tst', 'r') as f:
+    
+    with open (os.path.join(SCRIPT_DIR,'test_cases.tst'), 'r') as f:
         dic = {}
         columns = f.readline().split()
         for col in columns:
@@ -166,12 +163,12 @@ print ("---- END OF TEST RESULTS")
 a = str(result)
 
 try:
-    with open ('test_rounding_results.txt', 'r') as file:
+    with open (os.path.join(SCRIPT_DIR,'test_rounding_results.txt'), 'r') as file:
         o = file.read()
 except Exception as e:
     o = ''
     
-with open ('test_rounding_results.txt', 'w') as file:
+with open (os.path.join(SCRIPT_DIR,'test_rounding_results.txt'), 'w') as file:
     file.write(str(datetime.datetime.now())+'\n')
     file.write(a+'\n')
     file.write(o)
