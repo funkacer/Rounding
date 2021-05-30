@@ -165,6 +165,13 @@ print ("---- END OF TEST RESULTS")
 
 a = str(result)
 
+try:
+    with open ('test_rounding_results.txt', 'r') as file:
+        o = file.read()
+except Exception as e:
+    o = ''
+    
 with open ('test_rounding_results.txt', 'w') as file:
     file.write(str(datetime.datetime.now())+'\n')
-    file.write(a)
+    file.write(a+'\n')
+    file.write(o)
