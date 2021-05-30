@@ -30,6 +30,9 @@ def rdv(x,y=0):
 
 class TestRounding(unittest.TestCase):
 
+    if (os.path.exists(os.path.join(os.curdir, "test"))):
+        os.chdir("test")
+
     with open ('test_cases.tst', 'r') as f:
         dic = {}
         columns = f.readline().split()
