@@ -4,3 +4,9 @@
 /__pycache__/
 /.pytest_cache/
 /.ipynb_checkpoints/
+old/__pycache__/
+old/.ipynb_checkpoints/
+src/__pycache__/
+test/__pycache__/
+
+
