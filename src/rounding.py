@@ -35,8 +35,8 @@ def rd(number: float, precision: int = 0) -> str:
             #traceback.print_exc()
             pass
 
-    assert num is not None, '\nPlease specify valid number\n'
-    assert prec is not None, '\nPlease specify valid precision\n'
+    assert num is not None, 'Please specify valid number'
+    assert prec is not None, 'Please specify valid precision'
 
     fin = 1
     if num < 0: fin = -1

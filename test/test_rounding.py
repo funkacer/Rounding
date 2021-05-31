@@ -1,5 +1,4 @@
 import unittest
-import importlib.util
 import sys
 import os
 import datetime
@@ -133,7 +132,6 @@ class TestRounding(unittest.TestCase):
         from src.rounding import rd
 
         number = 1.1
-        precision = None
         self.assertIsInstance(rd(number), str)
 
 
@@ -141,26 +139,35 @@ runner = unittest.TextTestRunner()
 suite = unittest.TestLoader().loadTestsFromTestCase(TestRounding)
 result = runner.run(suite)
 
-print ("---- START OF TEST RESULTS")
-print (result)
+a = str(datetime.datetime.now()) + '\n'
+a += __file__ + '\n'
+a += str(result) + '\n'
 
-print ("result::errors")
-print (result.errors)
+if result.errors:
+    a += 'result::errors' + '\n'
+    for item in result.errors:
+        for i in item:
+            a += str(i)
 
-print ("result::failures")
-print (result.failures)
+if result.failures:
+    a += 'result::failures' + '\n'
+    for item in result.failures:
+        for i in item:
+            a += str(i)
 
-print ("result::skipped")
-print (result.skipped)
+if result.skipped:
+    a += 'result::skipped' + '\n'
+    for item in result.skipped:
+        for i in item:
+            a += str(i)
 
-print ("result::successful")
-print (result.wasSuccessful())
+if result.testsRun:
+    a += 'result::testsRun ' + str(result.testsRun) + '\n'
 
-print ("result::test-run")
-print (result.testsRun)
-print ("---- END OF TEST RESULTS")
-
-a = str(result)
+if result.wasSuccessful():
+    a += 'TEST(S) SUCCESSFUL!' + '\n'
+else:
+    a += 'TEST(S) FAILED!!!' + '\n'
 
 try:
     with open (os.path.join(SCRIPT_DIR,'test_rounding_results.txt'), 'r') as file:
@@ -169,6 +176,5 @@ except Exception as e:
     o = ''
     
 with open (os.path.join(SCRIPT_DIR,'test_rounding_results.txt'), 'w') as file:
-    file.write(str(datetime.datetime.now())+'\n')
-    file.write(a+'\n')
+    file.write(a + '\n')
     file.write(o)
