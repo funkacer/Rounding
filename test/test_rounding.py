@@ -1,11 +1,13 @@
 import unittest
 import os
 import sys
+import collections
 
 PACKAGE_PARENT = '..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
+print(SCRIPT_DIR)
 import rounding
 
 class KnownValues(unittest.TestCase):
@@ -48,7 +50,28 @@ class KnownValues(unittest.TestCase):
         ]
     unknown_key = 'ahoj'
 
+    #nactene pripady z old
+    known_excel_classic_cases = []
+    with open(os.path.join(SCRIPT_DIR, 'test_cases.tst'), 'r') as file:
+        line = file.readline()
+        if line:
+            columns = line.replace('\n', '').split('\t')
+            #print(columns)
+            row_known_excel_classic_cases = collections.namedtuple('row_known_excel_classic_cases', columns)
+            line = file.readline()
+            while line:
+                row = line.replace('\n', '').split('\t')
+                known_excel_classic_cases.append(row_known_excel_classic_cases(row[0], row[1], row[2]))
+                line = file.readline()
+    
     #musi zacinat test
+    def test_rounding_known_excel_classic_cases(self):
+        '''rounding.rd(num, dec, kwargs) should give known result with known input'''
+        #print(self.known_excel_classic_cases)
+        for x, y, z in self.known_excel_classic_cases:
+            result = rounding.rd(float(x), int(y))
+            self.assertEqual(z, result)
+
     def test_rounding_known_values_basic(self):
         '''rounding.rd(num, dec, kwargs) should give known result with known input'''
         for x, y, z, kwargs in self.known_values_basic:
