@@ -73,6 +73,12 @@ class KnownValues(unittest.TestCase):
             result = rounding.rd(x, y, **kwargs)
             self.assertEqual(z, result)
     
+    '''rd(None, 0, **{'separate_thousands':True})'''
+    def test_rounding_null_value(self):
+        '''rounding.rd(num, dec, kwargs) should give known result with None input'''
+        self.assertEqual(rounding.rd(None, 0, **{'separate_thousands':True}), 'N one')
+    
+    '''TypeError: rd() got an unexpected keyword argument 'sseparate_thousands' '''
     def test_rounding_unknown_key_exception_text(self):
         '''rounding.rd(num, dec, kwargs) should raise Error with unknown key'''
         with self.assertRaises(Exception) as context:
@@ -80,10 +86,23 @@ class KnownValues(unittest.TestCase):
         self.assertTrue(f"rd() got an unexpected keyword argument '{self.unknown_key}'" in str(context.exception),
 		f"rd() got an unexpected keyword argument '{self.unknown_key}'" + " != " + str(context.exception))
 
+    '''Kontrola na TypeError'''
     def test_rounding_unknown_key_exception_type(self):
         '''rounding.rd(num, dec, kwargs) should raise TypeError with unknown key'''
         with self.assertRaises(TypeError):
             rounding.rd(123, 2, **{self.unknown_key: 0})
+
+    def test_rounding_wrong_decimal_exception_type(self):
+        '''rounding.rd(num, dec, kwargs) should raise ValueError if decinals is not int'''
+        with self.assertRaises(ValueError) as context:
+            rounding.rd(None, None)
+
+    def test_rounding_wrong_decimal_exception_text(self):
+        '''rounding.rd(num, dec, kwargs) should raise ValueError if decinals is not int'''
+        with self.assertRaises(ValueError) as context:
+            rounding.rd(None, None)
+        self.assertTrue(f"Decimal places must be an integer" in str(context.exception),
+		f"Decimal places must be an integer" + " != " + str(context.exception))
 
 
 #if __name__ == '__main__':
