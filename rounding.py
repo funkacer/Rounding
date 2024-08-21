@@ -99,7 +99,7 @@ def main():
             y = 0
         #print(f'{x} rounded to {y} decimal places: {rd(x, y)}')
         print(f'{x} rounded to {y} decimal places:', rd(x, y, **{'separate_thousands':True}))
-        #print(f'{x} rounded to {y} decimal places:', rd(None, 0, **{'separate_thousands':True}))
+        #print(f'{x} rounded to {y} decimal places:', rd(None, None, **{'separate_thousands':True}))
 
 if __name__ == '__main__':
     main()

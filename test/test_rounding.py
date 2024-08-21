@@ -112,17 +112,19 @@ class KnownValues(unittest.TestCase):
     '''Kontrola na TypeError'''
     def test_rounding_unknown_key_exception_type(self):
         '''rounding.rd(num, dec, kwargs) should raise TypeError with unknown key'''
-        with self.assertRaises(TypeError):
+        with self.assertRaises(Exception) as context:
             rounding.rd(123, 2, **{self.unknown_key: 0})
+        self.assertEqual(context.exception.__class__, TypeError)
 
     def test_rounding_wrong_decimal_exception_type(self):
-        '''rounding.rd(num, dec, kwargs) should raise ValueError if decinals is not int'''
-        with self.assertRaises(ValueError) as context:
+        '''rounding.rd(num, dec, kwargs) should raise ValueError if decimals is not int'''
+        with self.assertRaises(Exception) as context:
             rounding.rd(None, None)
+        self.assertEqual(context.exception.__class__, ValueError)
 
     def test_rounding_wrong_decimal_exception_text(self):
-        '''rounding.rd(num, dec, kwargs) should raise ValueError if decinals is not int'''
-        with self.assertRaises(ValueError) as context:
+        '''rounding.rd(num, dec, kwargs) should raise ValueError if decimals is not int'''
+        with self.assertRaises(Exception) as context:
             rounding.rd(None, None)
         self.assertTrue(f"Decimal places must be an integer" in str(context.exception),
 		f"Decimal places must be an integer" + " != " + str(context.exception))
