@@ -14,35 +14,35 @@ class KnownValues(unittest.TestCase):
     known_values_basic=[
         (123.5, 0, '124', {}),
         (-123.5, 0, '-124', {}),
-        (17.456, 1, '17.5', {}),
-        (-17.456, 1, '-17.5', {}),
-        (123, 2, '123.00', {}),
-        (-123, 2, '-123.00', {}),
+        (17.456, 1, '17,5', {}),
+        (-17.456, 1, '-17,5', {}),
+        (123, 2, '123,00', {}),
+        (-123, 2, '-123,00', {}),
         ('123.', 0, '123', {}),
         ('-123.', 0, '-123', {}),
-        ('-999', -2, '-1000', {}),
-        ('999', -3, '1000', {}),
+        ('-999', -2, '-1000', {'thousands_separator':{'':''}}),
+        ('999', -3, '1000', {'thousands_separator':{'':''}}),
         ]
     known_values_negative_decimal=[
         ('811', -1, '810', {}),
         ('811', -2, '800', {}),
-        ('811', -3, '1000', {}),
+        ('811', -3, '1000', {'thousands_separator':{'':''}}),
         ('811', -4, '0', {}),
-        ('999', -1, '1000', {}),
-        ('999', -2, '1000', {}),
-        ('999', -3, '1000', {}),
-        ('-999', -1, '-1000', {}),
-        ('-999', -2, '-1000', {}),
-        ('-999', -3, '-1000', {}),
+        ('999', -1, '1000', {'thousands_separator':{'':''}}),
+        ('999', -2, '1000', {'thousands_separator':{'':''}}),
+        ('999', -3, '1000', {'thousands_separator':{'':''}}),
+        ('-999', -1, '-1000', {'thousands_separator':{'':''}}),
+        ('-999', -2, '-1000', {'thousands_separator':{'':''}}),
+        ('-999', -3, '-1000', {'thousands_separator':{'':''}}),
         ('-999', -4, '0', {}),
         ]
     known_values_thousands=[
-        (1234567, 0, '1 234 567', {'separate_thousands':True}),
-        (1234567, 2, '1 234 567.00', {'separate_thousands':True}),
-        (123, 1, '123.0', {'separate_thousands':True}),
-        (-123, 1, '-123.0', {'separate_thousands':True}),
-        ('1.234.567,555', 2, '1.234.567,56', {'separate_thousands':True, 'thousands_separator':'.', 'decimal_separator':','}),
-        (-11125, -1, '-11 130', {'separate_thousands':True})
+        (1234567, 0, '1 234 567', {'thousands_separator':{'':' '}}),
+        (1234567, 2, '1 234 567,00', {'thousands_separator':{'':' '}}),
+        (123, 1, '123,0', {'thousands_separator':{'':' '}}),
+        (-123, 1, '-123,0', {'thousands_separator':{'':' '}}),
+        ('1.234.567,555', 2, '1.234.567,56', {'thousands_separator':{'.':'.'}, 'decimal_separator':{',':','}}),
+        (-11125, -1, '-11 130', {'thousands_separator':{'':' '}})
         ]
     known_values_specks=[
         ('.1', 0, '0', {}),
@@ -99,7 +99,7 @@ class KnownValues(unittest.TestCase):
     '''rd(None, 0, **{'separate_thousands':True})'''
     def test_rounding_null_value(self):
         '''rounding.rd(num, dec, kwargs) should give known result with None input'''
-        self.assertEqual(rounding.rd(None, 0, **{'separate_thousands':True}), 'N one')
+        self.assertEqual(rounding.rd(None, 0, **{}), '')
     
     '''TypeError: rd() got an unexpected keyword argument 'sseparate_thousands' '''
     def test_rounding_unknown_key_exception(self):
