@@ -13,3 +13,4 @@
 **/src/*/
 **/test/*/
 /.venv/
+!requirements.txt
